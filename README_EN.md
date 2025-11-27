@@ -1,6 +1,16 @@
-# Document OCR Pipeline
+# AI-INVOICE-OCR-ENGINE
 
-A complete document OCR (Optical Character Recognition) solution based on **PaddleOCR v5**, optimized for invoice and accounting document recognition with support for Chinese and English text.
+[中文版](README_CN.md) | English
+
+A complete AI-powered document OCR (Optical Character Recognition) solution based on **PaddleOCR v5**, optimized for invoice and accounting document recognition with support for Chinese and English text.
+
+## Demo
+
+| Input | Output |
+|-------|--------|
+| ![Input](demo/input.png) | ![Output](demo/output.png) |
+
+> Add your demo images to the `demo/` folder
 
 ## Features
 
@@ -12,8 +22,6 @@ A complete document OCR (Optical Character Recognition) solution based on **Padd
 - **Easy Integration**: Simple Python API for quick deployment
 
 ## Architecture Overview
-
-This project implements a complete OCR pipeline with the following components:
 
 ```
 Input Image → Preprocessing → Text Detection → Text Recognition → Output
@@ -42,8 +50,6 @@ Input Image → Preprocessing → Text Detection → Text Recognition → Output
   - CTC (Connectionist Temporal Classification) decoder
   - Vocabulary: 6,624 characters
 
-For detailed architecture diagrams, see the `diagrams/` folder.
-
 ## Installation
 
 ### Requirements
@@ -52,12 +58,6 @@ For detailed architecture diagrams, see the `diagrams/` folder.
 - Windows/Linux/macOS
 
 ### Install Dependencies
-
-```bash
-pip install -r paddleocr_requirements.txt
-```
-
-Or install manually:
 
 ```bash
 pip install paddlepaddle>=2.5.0
@@ -76,9 +76,9 @@ from paddleocr import PaddleOCR
 
 # Initialize OCR engine
 ocr = PaddleOCR(
-    use_doc_orientation_classify=True,  # Enable document orientation detection
-    use_doc_unwarping=False,            # Disable unwarping for flat documents
-    use_textline_orientation=True       # Enable text line orientation
+    use_doc_orientation_classify=True,
+    use_doc_unwarping=False,
+    use_textline_orientation=True
 )
 
 # Perform OCR on an image
@@ -95,67 +95,51 @@ for item in result:
 ### Draw Bounding Boxes
 
 ```python
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 
 def draw_ocr_results(image_path, result, output_path):
-    """Draw OCR results with bounding boxes on the image."""
     image = Image.open(image_path).convert('RGB')
     draw = ImageDraw.Draw(image)
 
     for item in result:
         if hasattr(item, 'dt_polys') and hasattr(item, 'rec_texts'):
             for i, poly in enumerate(item.dt_polys):
-                # Draw polygon
                 points = [(int(p[0]), int(p[1])) for p in poly]
                 draw.polygon(points, outline='red', width=2)
-
-                # Draw text
                 text = item.rec_texts[i]
                 score = item.rec_scores[i]
                 draw.text(points[0], f"{text} ({score:.2f})", fill='blue')
 
     image.save(output_path)
-    print(f"Result saved to: {output_path}")
 
 # Usage
 result = ocr.predict('invoice.png')
 draw_ocr_results('invoice.png', result, 'result.png')
 ```
 
-### Run Demo Script
-
-```bash
-python paddleocr_demo.py
-```
-
 ## Project Structure
 
 ```
-document-ocr/
-├── docs/
-│   ├── diagrams/
-│   │   ├── 01_ocr_inference_pipeline.puml   # Inference pipeline diagram
-│   │   ├── 02_model_architecture.puml       # Model architecture diagram
-│   │   └── 03_training_pipeline.puml        # Training pipeline diagram
-│   ├── LICENSE-MIT
-│   ├── README_EN.md                         # English documentation
-│   └── README_TW.md                         # Traditional Chinese documentation
-├── paddleocr_demo.py                        # Demo script
-├── paddleocr_requirements.txt               # Dependencies
-└── CLAUDE.md                                # Development guidance
+AI-INVOICE-OCR-ENGINE/
+├── README_EN.md
+├── README_CN.md
+├── LICENSE-MIT
+├── setup.py
+├── config.py
+├── engine.py
+├── cli.py
+├── demo/                    # Demo images
+├── models/
+│   └── pretrained/
+│       └── weights/         # Model files (.onnx, .pdmodel, .pdiparams)
+├── preprocess/
+├── detect/
+├── recognize/
+├── data/
+├── losses/
+├── train/
+└── utils/
 ```
-
-## Diagrams
-
-The `docs/diagrams/` folder contains detailed PlantUML diagrams:
-
-1. **01_ocr_inference_pipeline.puml** - Complete inference flow from input to output
-2. **02_model_architecture.puml** - Detailed neural network architectures
-3. **03_training_pipeline.puml** - Data preparation, training, and evaluation
-
-To view diagrams:
-- Use VS Code with PlantUML extension (Alt + D to preview)
-- Use online PlantUML viewer: https://www.plantuml.com/plantuml/
 
 ## Performance
 
@@ -176,28 +160,6 @@ To view diagrams:
 - General printed documents
 - Mixed Chinese/English documents
 
-## Troubleshooting
-
-### Common Issues
-
-1. **ModuleNotFoundError: No module named 'paddle'**
-   ```bash
-   pip install paddlepaddle>=2.5.0
-   ```
-
-2. **CUDA out of memory**
-   - Use CPU mode or reduce image size
-   - Set `use_gpu=False` in PaddleOCR initialization
-
-3. **Poor recognition accuracy**
-   - Ensure image resolution is sufficient (>300 DPI recommended)
-   - Enable document orientation correction
-   - Check if image is properly lit and not blurry
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 ## Author
 
 **Jammy Lin**
@@ -217,3 +179,18 @@ This project is licensed under the MIT License - see the [LICENSE-MIT](LICENSE-M
 - PP-OCRv5: [PaddleOCR Documentation](https://paddlepaddle.github.io/PaddleOCR/)
 - DB Algorithm: [Real-time Scene Text Detection with Differentiable Binarization](https://arxiv.org/abs/1911.08947)
 - SVTR: [SVTR: Scene Text Recognition with a Single Visual Model](https://arxiv.org/abs/2205.00159)
+
+---
+
+## Support This Project
+
+If this project helps you, please give it a ⭐ **Star**!
+
+Your support is my motivation to keep improving!
+
+[![GitHub stars](https://img.shields.io/github/stars/xup6jammy/AI-INVOICE-OCR-ENGINE?style=social)](https://github.com/xup6jammy/AI-INVOICE-OCR-ENGINE)
+
+**Share this project:**
+- Fork it and contribute
+- Report issues and suggestions
+- Spread the word!
