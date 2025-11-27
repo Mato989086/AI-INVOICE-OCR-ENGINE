@@ -1,6 +1,6 @@
 # AI-INVOICE-OCR-ENGINE
 
-中文版 | [English](README_EN.md)
+中文版 | [English](README.md)
 
 一個基於 **PaddleOCR v5** 的完整 AI 文件光學字元辨識 (OCR) 解決方案，針對發票和會計文件辨識進行優化，支援中文和英文文字識別。
 
@@ -121,7 +121,7 @@ draw_ocr_results('invoice.png', result, 'result.png')
 
 ```
 AI-INVOICE-OCR-ENGINE/
-├── README_EN.md
+├── README.md
 ├── README_CN.md
 ├── LICENSE-MIT
 ├── setup.py

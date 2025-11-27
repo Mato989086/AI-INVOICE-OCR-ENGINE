@@ -1,6 +1,6 @@
 # AI-INVOICE-OCR-ENGINE
 
-[中文版](README_CN.md) | English
+[中文版](README_CN.md) | **English**
 
 A complete AI-powered document OCR (Optical Character Recognition) solution based on **PaddleOCR v5**, optimized for invoice and accounting document recognition with support for Chinese and English text.
 
