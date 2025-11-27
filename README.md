@@ -6,25 +6,33 @@ A complete AI-powered document OCR (Optical Character Recognition) solution base
 
 ## Demo
 
-| Input | Output |
-|-------|--------|
-| ![Input](demo/input.png) | ![Output](demo/output.png) |
+### Chinese Invoice / 中文發票
 
-> Add your demo images to the `demo/` folder
+| Original | OCR Result | Text Output |
+|----------|------------|-------------|
+| ![Input](demo/invoice_ch.png) | ![Output](demo/result_invoice_cn.jpg) | ![Text](demo/invoice_cn_txt.png) |
+
+### English Invoice / 英文發票
+
+| Original | OCR Result | Text Output |
+|----------|------------|-------------|
+| ![Input](demo/invoice_en.png) | ![Output](demo/result_invoice_en.jpg) | ![Text](demo/invoice_en_txt.png) |
 
 ## Features
 
 - **High Accuracy**: Utilizes PP-OCRv5 server models for superior recognition quality
 - **Multi-language Support**: Chinese, English, and mixed text recognition
 - **Document Preprocessing**: Automatic orientation correction and document unwarping
-- **Bounding Box Visualization**: Draw recognition results directly on images
-- **Multiple Output Formats**: JSON, Excel, and annotated images
+- **Bounding Box Visualization**: Draw green boxes around detected text regions
+- **Text Export**: Save recognition results to TXT file
 - **Easy Integration**: Simple Python API for quick deployment
 
 ## Architecture Overview
 
 ```
 Input Image → Preprocessing → Text Detection → Text Recognition → Output
+                                    ↓                  ↓
+                              Green Boxes         TXT File
 ```
 
 ### Pipeline Components
@@ -64,7 +72,6 @@ pip install paddlepaddle>=2.5.0
 pip install paddleocr>=3.0.0
 pip install pillow>=9.0.0
 pip install opencv-python>=4.5.0
-pip install PyMuPDF>=1.21.0
 ```
 
 ## Quick Start
@@ -76,62 +83,62 @@ from paddleocr import PaddleOCR
 
 # Initialize OCR engine
 ocr = PaddleOCR(
-    use_doc_orientation_classify=True,
-    use_doc_unwarping=False,
-    use_textline_orientation=True
+    use_doc_orientation_classify=False,
+    use_doc_unwarping=False
 )
 
 # Perform OCR on an image
-result = ocr.predict('path/to/your/image.png')
+result = ocr.predict('invoice.png')
 
 # Process results
 for item in result:
-    if hasattr(item, 'rec_texts'):
-        for i, text in enumerate(item.rec_texts):
-            score = item.rec_scores[i]
-            print(f"Text: {text}, Confidence: {score:.4f}")
+    if 'rec_texts' in item:
+        for i, text in enumerate(item['rec_texts']):
+            score = item['rec_scores'][i]
+            print(f"Text: {text}, Confidence: {score:.2%}")
 ```
 
-### Draw Bounding Boxes
+### Draw Boxes Only (No Text on Image)
 
 ```python
-from PIL import Image, ImageDraw
+import cv2
+import numpy as np
 
-def draw_ocr_results(image_path, result, output_path):
-    image = Image.open(image_path).convert('RGB')
-    draw = ImageDraw.Draw(image)
+def draw_boxes_only(image_path, boxes, output_path):
+    img = cv2.imread(image_path)
+    for box in boxes:
+        pts = np.array(box).astype(np.int32)
+        cv2.polylines(img, [pts], True, (0, 255, 0), 2)
+    cv2.imwrite(output_path, img)
+```
 
-    for item in result:
-        if hasattr(item, 'dt_polys') and hasattr(item, 'rec_texts'):
-            for i, poly in enumerate(item.dt_polys):
-                points = [(int(p[0]), int(p[1])) for p in poly]
-                draw.polygon(points, outline='red', width=2)
-                text = item.rec_texts[i]
-                score = item.rec_scores[i]
-                draw.text(points[0], f"{text} ({score:.2f})", fill='blue')
+### Save Results to TXT
 
-    image.save(output_path)
-
-# Usage
-result = ocr.predict('invoice.png')
-draw_ocr_results('invoice.png', result, 'result.png')
+```python
+def save_text_to_file(txts, scores, output_path):
+    with open(output_path, 'w', encoding='utf-8') as f:
+        for i, (txt, score) in enumerate(zip(txts, scores)):
+            f.write(f"{i+1}. {txt} (Confidence: {score:.2%})\n")
 ```
 
 ## Project Structure
 
 ```
 AI-INVOICE-OCR-ENGINE/
-├── README_EN.md
+├── README.md
 ├── README_CN.md
 ├── LICENSE-MIT
 ├── setup.py
-├── config.py
-├── engine.py
-├── cli.py
-├── demo/                    # Demo images
+├── demo/
+│   ├── invoice_ch.png           # Chinese invoice (input)
+│   ├── invoice_en.png           # English invoice (input)
+│   ├── result_invoice_cn.jpg    # Chinese result (output)
+│   ├── result_invoice_en.jpg    # English result (output)
+│   ├── invoice_cn_txt.png       # Chinese text result
+│   └── invoice_en_txt.png       # English text result
 ├── models/
 │   └── pretrained/
-│       └── weights/         # Model files (.onnx, .pdmodel, .pdiparams)
+│       └── weights/             # Model files (.onnx, .pdmodel, .pdiparams)
 ├── preprocess/
 ├── detect/
 ├── recognize/
@@ -182,15 +189,16 @@ This project is licensed under the MIT License - see the [LICENSE-MIT](LICENSE-M
 
 ---
 
-## Support This Project
+## ⭐ Support This Project
 
-If this project helps you, please give it a ⭐ **Star**!
+If this project helps you, please give it a **Star**!
 
 Your support is my motivation to keep improving!
 
 [![GitHub stars](https://img.shields.io/github/stars/xup6jammy/AI-INVOICE-OCR-ENGINE?style=social)](https://github.com/xup6jammy/AI-INVOICE-OCR-ENGINE)
 
-**Share this project:**
-- Fork it and contribute
-- Report issues and suggestions
-- Spread the word!
+**Ways to support:**
+- ⭐ Star this repository
+- 🍴 Fork and contribute
+- 🐛 Report issues and suggestions
+- 📢 Share with others!
